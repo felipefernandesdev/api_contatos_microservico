@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: api_contatos_microservico
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+    environment:
+      NODE_ENV: dev
+
+  database:
+    image: mysql
+    container_name: db-api-contatos
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: api_contatos
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/mysql:/var/lib/mysql
+  
+volumes:
+  mysqldata:
+    driver: local
