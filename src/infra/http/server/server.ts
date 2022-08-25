@@ -14,15 +14,18 @@ export class Server {
     this.routes = routes;
     this.config();
     this.middlewares();
+    this.routes();
   }
 
   config() {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(this.routes)
   }
 
   middlewares() {}
+  router() {
+    this.app.use(this.routes);
+  }
 
   start() {
     this.app.listen(this.port, () =>
