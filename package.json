@@ -4,18 +4,21 @@
   "main": "./dist/src/app/app.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/app/app.ts",
+    "dev": "export PORT=5000 && nodemon ./src/app/app.ts",
     "start": "node .",
-    "build": "rm -rf ./dist && tsc"
+    "build": "rm -rf ./dist && tsc",
+    "start:build": "rm -rf ./dist && npm run build && node ."
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
     "@types/node": "^18.7.11",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
